@@ -59,7 +59,7 @@ class TicTacToe
 
  def turn_count
    counter = 0
-   board.each do |index|
+   @board.each do |index|
      if (index == "X" || index == "O")
      counter += 1
    end
@@ -88,18 +88,18 @@ class TicTacToe
    return false
  end
  def full?
-  board.all?{ |index| index == "X" ||index == "O"  }
+  @board.all?{ |index| index == "X" ||index == "O"  }
  end
 
  def draw?
-    if !won?(board) &&  full?(board)
+    if !won? &&  full?
       return true
     end
  return false
  end
 
  def over?
-  if won?(board) || full?(board) || draw?(board)
+  if won? || full? || draw?
     return true
   end
   return false
@@ -107,11 +107,11 @@ class TicTacToe
 
  def winner
     index = []
-    index = won?(board)
+    index = won?
  if index == false
     return nil
     else
-      if board[index[0]] == "X"
+      if @board[index[0]] == "X"
         return "X"
    else
      return "O"
@@ -120,12 +120,12 @@ class TicTacToe
  end
 
  def play
-  until over?(board)
-    turn(board)
- end
- if winner(board) == "X"
+  until over?
+    turn
+   end
+ if winner == "X"
    puts "Congratulations X!"
- elsif winner(board) == "O"
+ elsif winner == "O"
    puts "Congratulations O!"
  else
    puts "Cat's Game!"
